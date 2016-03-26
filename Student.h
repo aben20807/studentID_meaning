@@ -8,8 +8,8 @@ class Student
         
         void setStudentId(const string);
         string getStudentId();
-        string getDepartment(int);
-        string getIdentity(int);
+        string getDepartment();
+        string getIdentity();
         string getEntryYear();
         string getEntryMethod();
         string getNumber();
