@@ -14,7 +14,9 @@ class Student
         string getEntryMethod();
         string getNumber();
         string getCheckCode();
-
+        void setCheck(bool);
+        bool getCheck();
     private:
         string _studentid;
+        bool _check;
 };

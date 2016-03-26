@@ -2,10 +2,12 @@
 
 Student::Student()
 {
+    setCheck(false);
     setStudentId("A00000000");
 }
 Student::Student(string init_id)
 {
+    setCheck(false);
     setStudentId(init_id);
 }
 
@@ -17,7 +19,14 @@ string Student::getStudentId()
 {
     return _studentid;
 }
-
+void Student::setCheck(bool tf)
+{
+    _check=tf;
+}
+bool Student::getCheck()
+{
+    return _check;
+}
 string Student::getDepartment()
 {
     if(_studentid[0]=='A'&&_studentid[1]=='N')
@@ -111,7 +120,10 @@ string Student::getDepartment()
     else if(_studentid[0]=='I'&&_studentid[1]=='8')
         return "藥學系";
     else 
-        return "沒有此系!!!!";
+    {
+        setCheck(true);
+        return "沒有此科系!!!!";
+    }
 }
 string Student::getIdentity()
 {
@@ -126,10 +138,18 @@ string Student::getIdentity()
     else if(_studentid[2]=='8')
         return "博士班";
     else
-        return "沒有此身分!!!!";
+    {
+        setCheck(true);
+        return "沒有此身份!!!!";
+    }
 }
 string Student::getEntryYear()
 {
+    if(_studentid[3]<'0'&&_studentid[3]>'9'||_studentid[4]<'0'&&_studentid[4]>'9')
+    {
+        setCheck(true);
+        return "沒有資料!!!!";
+    }
     string tmp;
     if(_studentid[3]>='7')
     {
@@ -158,7 +178,29 @@ string Student::getEntryMethod()
         return "推薦入學";
     else if(_studentid[5]=='5')
         return "僑生";
+    else if(_studentid[5]=='6')
+        return "申請入學";
+    else if(_studentid[5]=='7')
+        return "外籍生";
+    else if(_studentid[5]=='8')
+        return "交換學生";
+    else if(_studentid[5]=='9')
+        return "轉學生";
     else 
+    {
+        setCheck(true);
         return "沒有此入學方式!!!!";
+    }
 }
-
+string Student::getNumber()
+{
+    if(_studentid[6]<'0'&&_studentid[6]>'9'||_studentid[7]<'0'&&_studentid[7]>'9')
+    {
+        setCheck(true);
+        return "沒有資料!!!!";
+    }
+    string tmp;
+    tmp+=_studentid[6];
+    tmp+=_studentid[7];
+    return tmp; 
+}
